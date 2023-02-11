@@ -4,30 +4,511 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Baby Yoda</title>
+    <title>Catch Baby Yoda</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/mandalore');
+        body {
+            margin: 0;
+            height: 600px;
+            width: 100%;
+            display: grid;
+            justify-content: center;
+            counter-reset: score;
+        }
+        .phone {
+            margin-top: 20px;
+            position: relative;
+            height: 600px;
+            width: 300px;
+            border: 8px solid black;
+            border-radius: 40px;
+            background: #111711;
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 32px rgba(0, 0, 0, 0.22);
+        }
+        .title-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        .title-container h1 {
+            letter-spacing: 1px;
+            font-size: 2rem;
+            margin-top: 20px;
+            text-align: center;
+            font-family: 'Mandalore', sans-serif;          
+            color: #bdcaa6;
+        }
+        .title-container h1 span {
+            position: relative;
+            display: block;
+            font-size: 0.7rem;
+        }
+        .layer-1 {
+            z-index: 1;
+            position: absolute;
+            height: 450px;
+            width: 80px;
+            bottom: 0;
+            right: 60px;
+            animation: layer-1-2 1.5s ease-in-out infinite;            
+        }
+        @keyframes layer-1-2 {
+            0% {
+                height: 450px;
+            }
+            25% {
+                height: 400px;
+            }
+            100% {
+                height: 450px;
+            }
+        }
+        .input-1 {
+            appearance: none;
+            cursor: pointer;
+            z-index: 2;
+            position: absolute;
+            height: 450px;
+            width: 80px;
+            bottom: 0;
+            right: 60px;
+            animation: layer-1-2 1.5s ease-in-out infinite;
+        }
+        input[type=checkbox]:focus {
+            appearance: none;
+            outline: none;
+        }
+        input:checked {
+            counter-increment: score;
+        }
+        .score::after {
+            content: counter(score);
+        }
+        .layer-2 {
+            z-index: 2;
+            position: absolute;
+            height: 450px;
+            width: 80px;
+            bottom: 0;
+            left: 60px;
+            animation: layer-1-2 1.8s ease-in-out infinite;
+        }
+        .input-2 {
+            appearance: none;
+            cursor: pointer;
+            z-index: 3;
+            position: absolute;
+            height: 450px;
+            width: 80px;
+            bottom: 0;
+            left: 60px;
+            animation: layer-1-2 1.5s ease-in-out infinite;
+        }
+        .layer-3 {
+            z-index: 3;
+            position: absolute;
+            height: 400px;
+            width: 220px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            border: 1px solid #111711;
+        }
+        .layer-4 {
+            z-index: 4;
+            position: absolute;
+            height: 350px;
+            width: 80px;
+            bottom: 0;
+            left: 30px;
+            animation: layer-4 1.2s ease-in-out 0.2s infinite;
+        }
+        .input-4 {
+            appearance: none;
+            cursor: pointer;
+            z-index: 5;
+            position: absolute;
+            height: 350px;
+            width: 80px;
+            bottom: 0;
+            left: 30px;
+            animation: layer-4 1.2s ease-in-out 0.2s infinite;
+        }
+        @keyframes layer-4 {
+            0% {
+                height: 350px;
+            }
+            25% {
+                height: 300px;
+            }
+            100% {
+                height: 350px;
+            }
+        }
+        .layer-5 {
+            z-index: 5;
+            position: absolute;
+            height: 300px;
+            width: 220px;
+            bottom: 0;
+            left: 0;
+            border: 1px solid #111711;
+            border-radius: 0 0 0 30%;
+        }
+        .layer-6 {
+            z-index: 6;
+            position: absolute;
+            height: 250px;
+            width: 80px;
+            bottom: 0;
+            right: 40px;
+            animation: layer-6 1.5s ease-in-out 0.7s infinite;
+        }
+        .input-6 {
+            appearance: none;
+            cursor: pointer;
+            z-index: 7;
+            position: absolute;
+            height: 250px;
+            width: 80px;
+            bottom: 0;
+            right: 40px;
+            animation: layer-6 1.5s ease-in-out 0.7s infinite;
+        }
+        @keyframes layer-6 {
+            0% {
+                height: 250px;
+            }
+            25% {
+                height: 200px;
+            }
+            100% {
+                height: 250px;
+            }
+        }
+        .layer-7 {
+            z-index: 7;
+            position: absolute;
+            height: 200px;
+            width: 170px;
+            bottom: 0;
+            right: 0;
+            border: 1px solid #111711;
+            border-radius: 0 0 30% 0;
+        }
+        .layer-8 {
+            z-index: 8;
+            position: absolute;
+            height: 120px;
+            width: 170px;
+            background: lightgreen;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            border-radius: 50% 50% 0 0;
+            border-top: 10px solid #f19700;
+            border-left: 10px solid #f19700;
+            border-right: 10px solid #f19700;
+            background: #f0b81a;
+        }
+        .layer-9 {
+            z-index: 8;
+            position: absolute;
+            height: 100px;
+            width: 110px;
+            background: white;
+            bottom: 0;
+            left: 0;
+            border-radius: 0 90% 0 30%;
+            border-top: 10px solid #111711;
+            border-right: 10px solid #111711;
+            background: #3b4a41;
+        }
+        .layer-10 {
+            z-index: 8;
+            position: absolute;
+            height: 100px;
+            width: 110px;
+            background: white;
+            bottom: 0;
+            right: 0;
+            border-radius: 100% 0 30% 0;
+            border-top: 10px solid #445f52;
+            border-left: 10px solid #445f52;
+            background: #698577;
+        }
+        .left-ear--outer {
+            background: #78ac39;
+            border-radius: 0 0 0 90%;
+            width: 40px;
+            height: 20px;
+            position: absolute;
+            left: 0;
+            top: 15px;
+        }
+        .left-ear--inner {
+            background: #698a20;
+            border-radius: 0 25% 0 100%;
+            width: 20px;
+            height: 12px;
+            position: absolute;
+            left: 2px;
+            top: 20px;
+        }
+        .right-ear--outer {
+            background: #78ac39;
+            border-radius: 0  0 90% 0;
+            width: 40px;
+            height: 20px;
+            position: absolute;
+            right: 0;
+            top: 15px;
+        }
+        .right-ear--inner {
+            background: #698a20;
+            border-radius: 25% 0 100% 0;
+            width: 20px;
+            height: 12px;
+            position: absolute;
+            right: 2px;
+            top: 20px;
+        }
+        .head {
+            background: #78ac39;
+            border-radius: 30%;
+            width: 35px;
+            height: 20px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 10px;
+        }
+        .head__eye {
+            background: #111812;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 6px;
+            animation-name: blink;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes blink {
+            0% {
+                height: 10px;
+            }
+            5% {
+                height: 1px;
+                transform: translate(0px, 5px);
+            }
+            10% {
+                height: 10px;
+                transform: translate(0px, 0px);
+            }            
+        }        
+        .head__eye--left {
+            left: 5px;
+        }
+        .head__eye--right {
+            right: 5px;
+        }
+        .pupil {
+            background: #c6ac63;
+            border-radius: 50%;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+        }
+        .nose {
+            background: #62872c;
+            border-radius: 100% 100% 50% 50%;
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        .scarf-top {
+            background: #f0b81a;
+            width: 40px;
+            height: 10px;
+            position: absolute;
+            top: 32px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+        .scarf-bottom {
+            background: #f19700;
+            width: 40px;
+            height: 10px;
+            position: absolute;
+            top: 42px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+        .top-wall {
+            background: #445f52;
+            width: 100%;
+            height: 30px;
+            position: absolute;
+            top: 0;
+        }
+        .front-wall {
+            display: flex;
+            justify-content: space-evenly;
+            background: #698577;
+            width: 100px;
+            height: 20px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+        }
+        .front-button {
+            background: #bdcaa6;
+            width: 12px;
+            height: 12px;
+            margin-top: 4px;
+        }
+        .bottom-wall {
+            background: #3b4a41;
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            width: 100%;
+            top: 30px;
+            border-radius: 0 0 30% 30%;
+        }
+    </style>
 </head>
 <body>
-      <div class="baby-yoda-container">
-          <div class="force-container">
-            <div class="baby-yoda">
-              <div class="head">
-                <div class="face">
-                  <div class="ears">
-                    <div class="ear left"></div>
-                    <div class="ear right"></div>
-                  </div>
-                  <div class="eyes">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
-                  </div>
-                  <div class="nose"></div>
-                </div>
-              </div>
-              <div class="scarf"></div>
-            </div>
-          </div>
+    <div class="phone">            
+        <input type="checkbox" class="input-1">
+        <input type="checkbox" class="input-2">
+        <input type="checkbox" class="input-4">
+        <input type="checkbox" class="input-6">
+        <div class="title-container">
+            <h1 class="title">
+                <span>CATCH</span>
+                BABY YODA
+                <p class="score">SCORE: </p>
+            </h1>        
         </div>
-      </div>    
+        <div class="layer-1">
+            <div class="left-ear--outer"></div>
+            <div class="left-ear--inner"></div>
+            <div class="right-ear--outer"></div>
+            <div class="right-ear--inner"></div>
+            <div class="head">
+                <div class="head__eye head__eye--left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="head__eye head__eye--right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="head__eye head__eye--left"></div>
+                <div class="head__eye head__eye--right"></div>
+                <div class="nose"></div>
+            </div>
+            <div class="scarf-top"></div>
+            <div class="scarf-bottom"></div>
+        </div>
+        <div class="layer-2">
+            <div class="left-ear--outer"></div>
+            <div class="left-ear--inner"></div>
+            <div class="right-ear--outer"></div>
+            <div class="right-ear--inner"></div>
+            <div class="head">
+                <div class="head__eye head__eye--left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="head__eye head__eye--right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="nose"></div>
+            </div>
+            <div class="scarf-top"></div>
+            <div class="scarf-bottom"></div>
+        </div>
+        <div class="layer-3">
+            <div class="top-wall">
+                <div class="front-wall">
+                    <div class="front-button"></div>
+                    <div class="front-button"></div>
+                    <div class="front-button"></div>
+                </div>
+            </div>
+            <div class="bottom-wall"></div>        
+        </div>
+        <div class="layer-4">
+            <div class="left-ear--outer"></div>
+            <div class="left-ear--inner"></div>
+            <div class="right-ear--outer"></div>
+            <div class="right-ear--inner"></div>
+            <div class="head">
+                <div class="head__eye head__eye--left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="head__eye head__eye--right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="nose"></div>
+            </div>
+            <div class="scarf-top"></div>
+            <div class="scarf-bottom"></div>
+        </div>
+        <div class="layer-5">
+            <div class="top-wall">
+                <div class="front-wall">
+                    <div class="front-button"></div>
+                    <div class="front-button"></div>
+                    <div class="front-button"></div>
+                </div>
+            </div>
+            <div class="bottom-wall"></div>        
+        </div>
+        <div class="layer-6">
+            <div class="left-ear--outer"></div>
+            <div class="left-ear--inner"></div>
+            <div class="right-ear--outer"></div>
+            <div class="right-ear--inner"></div>
+            <div class="head">
+                <div class="head__eye head__eye--left">
+                    <div class="pupil"></div>
+                </div>
+                <div class="head__eye head__eye--right">
+                    <div class="pupil"></div>
+                </div>
+                <div class="nose"></div>
+            </div>
+            <div class="scarf-top"></div>
+            <div class="scarf-bottom"></div>
+        </div>
+        <div class="layer-7">
+            <div class="top-wall">
+                <div class="front-wall">
+                    <div class="front-button"></div>
+                    <div class="front-button"></div>
+                    <div class="front-button"></div>
+                </div>
+            </div>
+            <div class="bottom-wall"></div>        
+        </div>
+        <div class="layer-8"></div>
+        <div class="layer-9"></div>
+        <div class="layer-10"></div>
+    </div>
 </body>
 </html>
